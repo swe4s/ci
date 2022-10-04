@@ -14,5 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        cd test/unit
-        python -m unittest test_utils.py
+          cd test/unit
+          python -m unittest test_utils.py
