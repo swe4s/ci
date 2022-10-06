@@ -1,0 +1,4 @@
+name: swe4s
+channels:
+  - conda-forge
+prefix: /opt/conda/envs/swe4s
