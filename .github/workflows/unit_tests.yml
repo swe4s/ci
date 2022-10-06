@@ -19,8 +19,8 @@ jobs:
           activate-environment: swe4s
           environment-file: environment.yml
       - run: | 
-        cd test/func
-        bash test_search.sh
+          cd test/func
+          bash test_search.sh
   code_style:
     runs-on: ubuntu-latest
     defaults:
