@@ -10,7 +10,7 @@ def linear_search(list_to_search, key):
         curr_item = list_to_search[i]
         if key == curr_item:
             return i
-    return None
+    return -1
 
 
 def index_list(input_list):
