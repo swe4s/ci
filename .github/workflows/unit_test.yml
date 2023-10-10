@@ -5,21 +5,29 @@ on:
     branches: [ main ]
 
 jobs:
+  defaults:
+    run:
+      shell: bash -el {0}
+      
   run_unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: |
           cd test/unit
-          python -m unittest test_utils          
+          python -m unittest test_utils    
+          
   run_func_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: environment.yml
       - run: |
-          pip install numpy
           cd test/func
           bash test_search.sh
+          
   run_all_tests:
     runs-on: ubuntu-latest
     steps:
