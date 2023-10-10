@@ -2,6 +2,7 @@ import argparse
 import random
 import time
 import utils
+import numpy as np
 
 
 def get_args():
