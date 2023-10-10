@@ -7,10 +7,6 @@ on:
 jobs:  
   run_unit_tests:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -el {0}
-      
     steps:
       - uses: actions/checkout@v2
       - run: |
@@ -19,6 +15,9 @@ jobs:
           
   run_func_tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}  
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
