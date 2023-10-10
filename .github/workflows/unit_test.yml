@@ -37,7 +37,7 @@ jobs:
         with:
           environment-file: environment.yml
           environment-name: swe4s
-      - shell: shell: bash -el {0}
+      - shell: bash -el {0}
       - run: |
           cd test/unit
           python -m unittest test_utils
