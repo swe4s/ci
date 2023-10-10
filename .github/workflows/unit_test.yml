@@ -32,6 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: mamba-org/provision-with-micromamba@v16
+        with:
+          environment-file: environment.yml
       - run: |
           cd test/unit
           python -m unittest test_utils
