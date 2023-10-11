@@ -1,0 +1,52 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# make a job name: running unit tests
+jobs:
+  unit_tests:
+    # configure the operating system 'environment'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          cd test/unit
+          python -m unittest test_utils.py
+  func_tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      # get to branch
+      - uses: actions/checkout@v2
+      # get the proper environment
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: swe4s
+          environment-file: environment.yml
+      # run the functional tests
+      - run: |
+          cd ./test/func
+          bash test_search.sh
+
+  # job for running pycodestyle
+  code_style:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      # checkout code again because independent jobs
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: swe4s
+          environment-file: environment.yml
+      # $() tells bash to do that command first
+      - run: pycodestyle $(git ls-files "*.py")
+      
